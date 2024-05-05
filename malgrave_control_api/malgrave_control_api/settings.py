@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+from .config import AMAZON_CREDENTIALS
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -110,12 +110,12 @@ WSGI_APPLICATION = 'malgrave_control_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'malgrave-db',
-        'USER': 'malgraveDBA',
-        'PASSWORD': '#EDC3edc',
-        'HOST': 'malgrave-db.cluster-c3wussw06to8.us-east-2.rds.amazonaws.com',
-        'PORT': '5432',  # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': AMAZON_CREDENTIALS['AWS_DB_NAME'],
+        'USER': AMAZON_CREDENTIALS['AWS_DB_USER'],
+        'PASSWORD': AMAZON_CREDENTIALS['AWS_DB_PASSWORD'],
+        'HOST': AMAZON_CREDENTIALS['AWS_DB_HOST'],
+        'PORT': AMAZON_CREDENTIALS['AWS_DB_PORT'],
     }
 }
 
@@ -164,7 +164,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #AWS Config
 
-AWS_ACCESS_KEY_ID = 'AKIA3FLDYWQFALFFWD3U'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'malgrave-control-bucket'
-AWS_REGION = 'us-east-2'
+AWS_ACCESS_KEY_ID = AMAZON_CREDENTIALS['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = AMAZON_CREDENTIALS['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = AMAZON_CREDENTIALS['AWS_STORAGE_BUCKET_NAME']
+AWS_REGION = AMAZON_CREDENTIALS['AWS_REGION']

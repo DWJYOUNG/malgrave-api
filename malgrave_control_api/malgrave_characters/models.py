@@ -19,7 +19,7 @@ class Character(models.Model):
     description = models.CharField(max_length=300, default='empty')
     armour_class = models.IntegerField(default=0)
     health_points = models.IntegerField(default=0)
-    image = models.CharField(max_length=100, default='empty')
+    image = models.ImageField(upload_to="media/characterPhoto")
 
     def __str__(self):
         return self.name
